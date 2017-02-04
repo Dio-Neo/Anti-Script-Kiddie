@@ -24,19 +24,22 @@ Partial Class FrmMain
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         Me.TableLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
-        Me.LV = New System.Windows.Forms.ListView()
         Me.Panel = New System.Windows.Forms.Panel()
         Me.BtnScan = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.LvResult = New System.Windows.Forms.ListView()
+        Me.LvStartup = New System.Windows.Forms.ListView()
         Me.TableLayoutPanel.SuspendLayout()
         Me.Panel.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel
         '
         Me.TableLayoutPanel.ColumnCount = 1
         Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel.Controls.Add(Me.LV, 0, 0)
         Me.TableLayoutPanel.Controls.Add(Me.Panel, 0, 1)
+        Me.TableLayoutPanel.Controls.Add(Me.TableLayoutPanel1, 0, 0)
         Me.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel.Name = "TableLayoutPanel"
@@ -45,17 +48,8 @@ Partial Class FrmMain
         Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel.Size = New System.Drawing.Size(694, 562)
+        Me.TableLayoutPanel.Size = New System.Drawing.Size(1000, 562)
         Me.TableLayoutPanel.TabIndex = 0
-        '
-        'LV
-        '
-        Me.LV.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LV.Location = New System.Drawing.Point(3, 3)
-        Me.LV.Name = "LV"
-        Me.LV.Size = New System.Drawing.Size(688, 480)
-        Me.LV.TabIndex = 0
-        Me.LV.UseCompatibleStateImageBehavior = False
         '
         'Panel
         '
@@ -63,7 +57,7 @@ Partial Class FrmMain
         Me.Panel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel.Location = New System.Drawing.Point(3, 489)
         Me.Panel.Name = "Panel"
-        Me.Panel.Size = New System.Drawing.Size(688, 70)
+        Me.Panel.Size = New System.Drawing.Size(994, 70)
         Me.Panel.TabIndex = 1
         '
         'BtnScan
@@ -75,23 +69,60 @@ Partial Class FrmMain
         Me.BtnScan.Text = "Scan"
         Me.BtnScan.UseVisualStyleBackColor = True
         '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.40845!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LvStartup, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.LvResult, 0, 1)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 216.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(994, 480)
+        Me.TableLayoutPanel1.TabIndex = 2
+        '
+        'LvResult
+        '
+        Me.LvResult.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LvResult.Location = New System.Drawing.Point(3, 267)
+        Me.LvResult.Name = "LvResult"
+        Me.LvResult.Size = New System.Drawing.Size(988, 210)
+        Me.LvResult.TabIndex = 1
+        Me.LvResult.UseCompatibleStateImageBehavior = False
+        '
+        'LvStartup
+        '
+        Me.LvStartup.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LvStartup.Location = New System.Drawing.Point(3, 3)
+        Me.LvStartup.Name = "LvStartup"
+        Me.LvStartup.Size = New System.Drawing.Size(988, 258)
+        Me.LvStartup.TabIndex = 0
+        Me.LvStartup.UseCompatibleStateImageBehavior = False
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(694, 562)
+        Me.ClientSize = New System.Drawing.Size(1000, 562)
         Me.Controls.Add(Me.TableLayoutPanel)
+        Me.DoubleBuffered = True
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmMain"
         Me.Text = "Anti Script Kiddie"
         Me.TableLayoutPanel.ResumeLayout(False)
         Me.Panel.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents TableLayoutPanel As TableLayoutPanel
-    Friend WithEvents LV As ListView
     Friend WithEvents Panel As Panel
     Friend WithEvents BtnScan As Button
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents LvResult As ListView
+    Friend WithEvents LvStartup As ListView
 End Class
