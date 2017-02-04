@@ -91,6 +91,7 @@ Public Class FrmMain
 #Region "Core"
     Private Sub GetStartup()
         LvStartup.Items.Clear()
+        LvResult.Items.Clear()
         Dim Managements As New ManagementClass("Win32_StartupCommand")
         Dim ManagementObjectCollections As ManagementObjectCollection = Managements.GetInstances()
         For Each mItem In ManagementObjectCollections
