@@ -31,12 +31,12 @@ Public Class FrmMain
         LvStartup.Columns.Add("Cpation", 200)
         LvStartup.Columns.Add("Image Path", 500)
         LvStartup.Columns.Add("Signed", 100)
-        LvResult.View = View.Details
-        LvResult.FullRowSelect = True
-        LvResult.MultiSelect = False
-        LvResult.Columns.Add("Cpation", 200)
-        LvResult.Columns.Add("Image Path", 500)
-        LvResult.Columns.Add("Signed", 100)
+        LvProcess.View = View.Details
+        LvProcess.FullRowSelect = True
+        LvProcess.MultiSelect = False
+        LvProcess.Columns.Add("Caption", 200)
+        LvProcess.Columns.Add("ExecutablePath", 500)
+        LvProcess.Columns.Add("Signed", 100)
         Width = LvStartup.Columns(0).Width + LvStartup.Columns(1).Width + LvStartup.Columns(2).Width + 50
     End Sub
 #End Region
@@ -47,16 +47,16 @@ Public Class FrmMain
         _mCSV.Separator = ","
         _mCSV.TextQualifier = """"
         _mCSV.LoadCSV(fileName)
-        LvResult.Clear()
+        LvProcess.Clear()
         Dim dc As DataColumn
         Dim dr As DataRow
         Dim lvi As ListViewItem
         Dim idx As Integer
         For Each dc In _mCSV.CSVDataSet.Tables(0).Columns
-            LvResult.Columns.Add(dc.ColumnName, 100, HorizontalAlignment.Left)
+            LvProcess.Columns.Add(dc.ColumnName, 100, HorizontalAlignment.Left)
         Next
         For Each dr In _mCSV.CSVDataSet.Tables(0).Rows
-            lvi = LvResult.Items.Add(dr(0))
+            lvi = LvProcess.Items.Add(dr(0))
             For idx = 1 To _mCSV.CSVDataSet.Tables(0).Columns.Count - 1
                 If (dr(idx) = String.Empty) Then
                     lvi.SubItems.Add("Unknown")
@@ -66,14 +66,14 @@ Public Class FrmMain
                 End If
             Next
         Next
-        Dim c As Integer = LvResult.Columns.Count, lvc As Integer = LvResult.Items.Count
+        Dim c As Integer = LvProcess.Columns.Count, lvc As Integer = LvProcess.Items.Count
         For i = 0 To c - 1
-            LvResult.Columns(i).Text = LvResult.Items(0).SubItems(i).Text
-            If LvResult.Items(0).SubItems(i).Text = "VT detection" Then
+            LvProcess.Columns(i).Text = LvProcess.Items(0).SubItems(i).Text
+            If LvProcess.Items(0).SubItems(i).Text = "VT detection" Then
                 _vtColumn = i
             End If
         Next
-        LvResult.Items(0).Remove()
+        LvProcess.Items(0).Remove()
         'For i = 0 To lvc - 1
         '    If LvResult.Items(i).SubItems(ent).Text = "Unknown" Then
         '        LvResult.Items(i).BackColor = Color.Pink
@@ -91,7 +91,6 @@ Public Class FrmMain
 #Region "Core"
     Private Sub GetStartup()
         LvStartup.Items.Clear()
-        LvResult.Items.Clear()
         Dim Managements As New ManagementClass("Win32_StartupCommand")
         Dim ManagementObjectCollections As ManagementObjectCollection = Managements.GetInstances()
         For Each mItem In ManagementObjectCollections
@@ -101,12 +100,28 @@ Public Class FrmMain
             LvStartup.Items.Add(New ListViewItem(strStartupArray))
             If (strStartupArray(2) = "Unsigned") Then
                 LvStartup.Items(LvStartup.Items.Count - 1).BackColor = Color.Pink
-                Dim strResultArray() As String = {mItem("Caption").ToString, GetPath(mItem("Command").ToString),
-                                GetSignature(GetPath(mItem("Command").ToString))}
-                LvResult.Items.Add(New ListViewItem(strResultArray))
-                LvResult.Items(LvResult.Items.Count - 1).BackColor = Color.Red
             End If
         Next
+    End Sub
+
+    Private Sub GetProcess()
+        LvProcess.Items.Clear()
+        Try
+            Dim Managements As New ManagementClass("Win32_Process")
+            Dim ManagementObjectCollections As ManagementObjectCollection = Managements.GetInstances()
+            For Each mItem In ManagementObjectCollections
+                Dim strProcessArray() As String = {mItem("Caption").ToString, mItem("CommandLine").ToString,
+                                    GetSignature(mItem("CommandLine").ToString)}
+
+                LvStartup.Items.Add(New ListViewItem(strProcessArray))
+                If (strProcessArray(2) = "Unsigned") Then
+                    LvStartup.Items(LvStartup.Items.Count - 1).BackColor = Color.Pink
+                End If
+            Next
+        Catch e As Exception
+            MsgBox(e.ToString)
+        End Try
+
     End Sub
 
     Private Function GetPath(Command As String) As String
@@ -192,6 +207,7 @@ Public Class FrmMain
 #Region "UI Events"
     Private Sub BtnScan_Click(sender As Object, e As EventArgs) Handles BtnScan.Click
         GetStartup()
+        GetProcess()
     End Sub
 #End Region
 
