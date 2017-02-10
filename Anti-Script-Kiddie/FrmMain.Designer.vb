@@ -27,8 +27,7 @@ Partial Class FrmMain
         Me.Panel = New System.Windows.Forms.Panel()
         Me.BtnScan = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.LvStartup = New System.Windows.Forms.ListView()
-        Me.LvProcess = New System.Windows.Forms.ListView()
+        Me.LvStartup = New Anti_Script_Kiddie.CustomListView()
         Me.TableLayoutPanel.SuspendLayout()
         Me.Panel.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -74,13 +73,11 @@ Partial Class FrmMain
         Me.TableLayoutPanel1.ColumnCount = 1
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.40845!))
         Me.TableLayoutPanel1.Controls.Add(Me.LvStartup, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.LvProcess, 0, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 216.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(994, 480)
         Me.TableLayoutPanel1.TabIndex = 2
         '
@@ -89,18 +86,9 @@ Partial Class FrmMain
         Me.LvStartup.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LvStartup.Location = New System.Drawing.Point(3, 3)
         Me.LvStartup.Name = "LvStartup"
-        Me.LvStartup.Size = New System.Drawing.Size(988, 258)
-        Me.LvStartup.TabIndex = 0
+        Me.LvStartup.Size = New System.Drawing.Size(988, 474)
+        Me.LvStartup.TabIndex = 2
         Me.LvStartup.UseCompatibleStateImageBehavior = False
-        '
-        'LvProcess
-        '
-        Me.LvProcess.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LvProcess.Location = New System.Drawing.Point(3, 267)
-        Me.LvProcess.Name = "LvProcess"
-        Me.LvProcess.Size = New System.Drawing.Size(988, 210)
-        Me.LvProcess.TabIndex = 1
-        Me.LvProcess.UseCompatibleStateImageBehavior = False
         '
         'FrmMain
         '
@@ -123,6 +111,5 @@ Partial Class FrmMain
     Friend WithEvents Panel As Panel
     Friend WithEvents BtnScan As Button
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents LvProcess As ListView
-    Friend WithEvents LvStartup As ListView
+    Friend WithEvents LvStartup As CustomListView
 End Class
