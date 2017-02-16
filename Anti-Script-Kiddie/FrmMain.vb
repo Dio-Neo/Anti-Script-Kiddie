@@ -10,8 +10,9 @@ Imports Newtonsoft.Json.Linq
 Public Class FrmMain
 #Region "Variables"
     Const Quote As String = """"
-    Private _AllUsersStartup As String = Environment.GetFolderPath(Environment.SpecialFolder.Startup) & "\"
-    Private _CurrentUserStartup As String = Environment.GetFolderPath(Environment.SpecialFolder.Programs) &
+    Private _Is64Bit As Boolean = False
+    Private _AllUsersStartup As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartup) & "\"
+    Private _CurrentUserStartup As String = Environment.GetFolderPath(Environment.SpecialFolder.Startup) &
         "\Startup\"
 #End Region
 
@@ -19,6 +20,7 @@ Public Class FrmMain
     Sub New()
         InitializeComponent()
         LvSet()
+        _Is64Bit = Environment.Is64BitOperatingSystem()
     End Sub
 
     Private Sub LvSet()
@@ -46,6 +48,7 @@ Public Class FrmMain
                 LvStartup.Items(LvStartup.Items.Count - 1).BackColor = Color.Pink
             End If
         Next
+
     End Sub
 
     Private Function GetPath(Command As String) As String
